@@ -43,19 +43,29 @@ $(document).ready(function() {
 
 	var tl = new TimelineMax({
 		onComplete:function(){
-			document.body.addEventListener('mousemove', followingCursor);
-			document.body.addEventListener('touchmove', followingCursor);
+			document.body.addEventListener('mousemove', onMouseMove);
+			document.body.addEventListener('touchmove', onTouchMove);
 		}
 	});
 
 	// IMAGE FOLLOWING THE CURSOR
 
-	function followingCursor(e) {
+	function onTouchMove(e){
+		var x = e.touches[0].clientX;
+		var y = e.touches[0].clientY;
+		followingCursor(x,y)
+	}
+
+	function onMouseMove(e){
+		var x = e.clientX;
+		var y = e.clientY;
+		followingCursor(x,y)
+	}
+
+	function followingCursor(clientX,clientY) {
 		var width = window.innerWidth
 		var height = window.innerHeight
 
-		var clientX = e.clientX;
-		var clientY = e.clientY;
 
 		var y = (clientX / width - 0.5) * 25;
 		var x = (clientY / height - 0.5) * -25;
