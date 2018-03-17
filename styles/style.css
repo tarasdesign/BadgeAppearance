@@ -54,7 +54,7 @@ body {
 	top: calc(50% - var(--size) / 2);
 	position: absolute;
 	z-index: 1;
-	perspective: 500;
+	/*perspective: 500;*/
 }
 
 .image {

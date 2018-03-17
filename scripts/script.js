@@ -15,32 +15,6 @@ $(document).ready(function() {
 	var src = "images/Image-" + format00(num) + ".png";
 	image.attr("src", src);
 
-	/*
-	var tl = new TimelineMax({
-		onComplete:function(){
-			document.body.addEventListener('mousemove', function(e) {
-
-				var width = window.innerWidth
-				var height = window.innerHeight
-
-				var clientX = e.clientX;
-				var clientY = e.clientY;
-
-				var y = (clientX / width - 0.5) * 25;
-				var x = (clientY / height - 0.5) * -25;
-				var light = 100 + (clientX / width - 0.5) * 40;
-
-				TweenMax.to('.image', 0.4, {
-					rotationY: y + 'deg',
-					rotationX: x + 'deg',
-					filter: 'brightness(' + light + '%)',
-					transformPerspective: 550,
-				});
-			});
-		}
-	});
-	*/
-
 	var tl = new TimelineMax({
 		onComplete:function(){
 			document.body.addEventListener('mousemove', onMouseMove);
@@ -76,36 +50,38 @@ $(document).ready(function() {
 			rotationY: y + 'deg',
 			rotationX: x + 'deg',
 			filter: 'brightness(' + light + '%)',
-			transformPerspective: 550,
+			transformPerspective: 450,
 		});
 	}
 
 	tl.from('.background', 1.0, {
 		opacity: 0,
-		ease: Power4.easeInOut,
+		ease: Power2.easeInOut,
 	},"0");
 
 	tl.from('.glow', 1.0, {
 		opacity: 0,
 		scale: 0.1,
 		rotationZ: -540,
-		ease: Power4.easeIn,
+		ease: Power2.easeIn,
 	},"0");
 
 	tl.fromTo('.image', 1.0, {
 		opacity: 0,
 		scale: 0.1,
 		rotationZ: -540,
+		transformPerspective: 450,
 	}, {
 		opacity: 1,
 		scale: 1,
 		rotationZ: 0,
 		ease: Power2.easeIn,
+		transformPerspective: 450,
 	}, "0");
 
 	tl.from('.image', 2.5, {
 		rotationY: -1080,
-		ease: Elastic.easeOut.config(1, 0.3)
+		ease: Elastic.easeOut.config(1, 0.3),
 	},"0");
 
 	tl.add(function(){ explode(emitter);},"0.9");
@@ -116,16 +92,16 @@ $(document).ready(function() {
 
 	// SCALE IMAGE
 
-	document.querySelector('.image').addEventListener('mouseover', zoomOut);
-	document.querySelector('.image').addEventListener('mouseout', zoomIn);
+	document.querySelector('.image').addEventListener('mouseover', zoomMouseOver);
+	document.querySelector('.image').addEventListener('mouseout', zoomMouseOut);
 
-	function zoomOut(){
+	function zoomMouseOver(){
 		TweenMax.to('.image', 0.2, {
-			scale: 0.97,
+			scale: 1.025,
 		});
 	}
 
-	function zoomIn(){
+	function zoomMouseOut(){
 		TweenMax.to('.image', 0.2, {
 			scale: 1,
 		});
