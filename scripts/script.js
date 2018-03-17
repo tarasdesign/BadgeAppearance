@@ -96,12 +96,11 @@ $(document).ready(function() {
 		opacity: 0,
 		scale: 0.1,
 		rotationZ: -540,
-
 	}, {
 		opacity: 1,
 		scale: 1,
 		rotationZ: 0,
-		ease: Power4.easeIn,
+		ease: Power2.easeIn,
 	}, "0");
 
 	tl.from('.image', 2.5, {
@@ -111,7 +110,8 @@ $(document).ready(function() {
 
 	tl.add(function(){ explode(emitter);},"0.9");
 
-	tl.timeScale(1.0)
+	// ANIMATION SPEED
+	tl.timeScale(0.75)
 
 
 	// SCALE IMAGE
