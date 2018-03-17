@@ -50,9 +50,10 @@ $(document).ready(function() {
 
 	// IMAGE FOLLOWING THE CURSOR
 
-	function onTouchMove(e){
-		var x = e.touches[0].clientX;
-		var y = e.touches[0].clientY;
+	function onTouchMove(event){
+		event.preventDefault();
+		var x = event.touches[0].clientX;
+		var y = event.touches[0].clientY;
 		followingCursor(x,y)
 	}
 
