@@ -15,6 +15,7 @@ $(document).ready(function() {
 	var src = "images/Image-" + format00(num) + ".png";
 	image.attr("src", src);
 
+	/*
 	var tl = new TimelineMax({
 		onComplete:function(){
 			document.body.addEventListener('mousemove', function(e) {
@@ -38,6 +39,35 @@ $(document).ready(function() {
 			});
 		}
 	});
+	*/
+
+	var tl = new TimelineMax({
+		onComplete:function(){
+			document.body.addEventListener('mousemove', followingCursor);
+			document.body.addEventListener('touchmove', followingCursor);
+		}
+	});
+
+	// IMAGE FOLLOWING THE CURSOR
+
+	function followingCursor(e) {
+		var width = window.innerWidth
+		var height = window.innerHeight
+
+		var clientX = e.clientX;
+		var clientY = e.clientY;
+
+		var y = (clientX / width - 0.5) * 25;
+		var x = (clientY / height - 0.5) * -25;
+		var light = 100 + (clientX / width - 0.5) * 40;
+
+		TweenMax.to('.image', 0.4, {
+			rotationY: y + 'deg',
+			rotationX: x + 'deg',
+			filter: 'brightness(' + light + '%)',
+			transformPerspective: 550,
+		});
+	}
 
 	tl.from('.background', 1.0, {
 		opacity: 0,
@@ -72,17 +102,23 @@ $(document).ready(function() {
 
 	tl.timeScale(1.0)
 
-	document.querySelector('.image').addEventListener('mouseover', function() {
+
+	// SCALE IMAGE
+
+	document.querySelector('.image').addEventListener('mouseover', zoomOut);
+	document.querySelector('.image').addEventListener('mouseout', zoomIn);
+
+	function zoomOut(){
 		TweenMax.to('.image', 0.2, {
 			scale: 0.97,
 		});
-	});
+	}
 
-	document.querySelector('.image').addEventListener('mouseout', function() {
+	function zoomIn(){
 		TweenMax.to('.image', 0.2, {
-			scale: 1.0,
+			scale: 1,
 		});
-	});
+	}
 
 	// EMITTER
 

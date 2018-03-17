@@ -50,8 +50,8 @@ body {
 .container {
 	width: var(--size);
 	height: var(--size);
-	left: calc(50vw - var(--size) / 2);
-	top: calc(50vh - var(--size) / 2);
+	left: calc(50% - var(--size) / 2);
+	top: calc(50% - var(--size) / 2);
 	position: absolute;
 	z-index: 1;
 	perspective: 500;
