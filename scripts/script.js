@@ -27,7 +27,7 @@ $(document).ready(function() {
 			window.ondevicemotion = function(event) {
 				if (window.innerHeight > window.innerWidth) {
 					var x = event.accelerationIncludingGravity.x.map(2, -2, 0, window.innerWidth)
-					var y = event.accelerationIncludingGravity.y.map(-5, -10, 0, window.innerHeight)
+					var y = event.accelerationIncludingGravity.y.map(-10, -5, 0, window.innerHeight)
 					followingCursor(x, y)
 				}
 			}
