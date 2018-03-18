@@ -26,8 +26,8 @@ $(document).ready(function() {
 		}
 	};
 
-if (!isMobile.any()) alert('Desktop');
-if (isMobile.iOS()) alert('iOS');
+	//if (isMobile.any()) alert('Mobile');
+	//if (isMobile.iOS()) alert('iOS');
 
 	Number.prototype.map = function (in_min, in_max, out_min, out_max) {
 		return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -135,16 +135,20 @@ if (isMobile.iOS()) alert('iOS');
 
 	// SCALE IMAGE
 
-	document.querySelector('.image').addEventListener('mouseover', zoomMouseOver)
-	document.querySelector('.image').addEventListener('mouseout', zoomMouseOut)
+	if (isMobile.any()) {
+		
+	} else {
+		document.querySelector('.image').addEventListener('mouseover', zoomIn);
+		document.querySelector('.image').addEventListener('mouseout', zoomOut);
+	}
 
-	function zoomMouseOver() {
+	function zoomIn() {
 		TweenMax.to('.image', 0.2, {
-			scale: 1.025,
+			scale: 1.05,
 		});
 	}
 
-	function zoomMouseOut() {
+	function zoomOut() {
 		TweenMax.to('.image', 0.2, {
 			scale: 1,
 		});
