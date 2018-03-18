@@ -4,6 +4,31 @@ $(document).ready(function() {
 	var body = $('body');
 	var image = $('.image');
 
+	// Detect device user agent
+	var isMobile = {
+		Android: function() {
+		    return navigator.userAgent.match(/Android/i);
+		},
+		BlackBerry: function() {
+		    return navigator.userAgent.match(/BlackBerry/i);
+		},
+		iOS: function() {
+		    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+		Opera: function() {
+		    return navigator.userAgent.match(/Opera Mini/i);
+		},
+		Windows: function() {
+		    return navigator.userAgent.match(/IEMobile/i);
+		},
+		any: function() {
+		    return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		}
+	};
+
+if (!isMobile.any()) alert('Desktop');
+if (isMobile.iOS()) alert('iOS');
+
 	Number.prototype.map = function (in_min, in_max, out_min, out_max) {
 		return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	}
@@ -16,8 +41,8 @@ $(document).ready(function() {
 	}
 
 	var num = Math.floor((Math.random() * 17) + 1);
-	var src = "images/Image-" + format00(num) + ".png";
-	image.attr("src", src);
+	var src = 'images/Image-' + format00(num) + '.png';
+	image.attr('src', src);
 
 	var tl = new TimelineMax({
 		onComplete: function(){
