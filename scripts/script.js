@@ -4,6 +4,10 @@ $(document).ready(function() {
 	var body = $('body');
 	var image = $('.image');
 
+	Number.prototype.map = function (in_min, in_max, out_min, out_max) {
+	  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
+
 	function format00(x) {
 		var str = '' + x;
 		var pad = '00';
@@ -19,7 +23,18 @@ $(document).ready(function() {
 		onComplete:function(){
 			document.body.addEventListener('mousemove', onMouseMove);
 			document.body.addEventListener('touchmove', onTouchMove);
+
+			window.ondevicemotion = function(event) {
+				if (window.innerHeight > window.innerWidth) {
+					var x = event.accelerationIncludingGravity.x.map(2,-2,0,window.innerWidth);
+					var y = event.accelerationIncludingGravity.y.map(-10,-5,0,window.innerHeight);
+					// console.log("x::",);
+					console.log("y::",event.accelerationIncludingGravity.y);
+					followingCursor(x,y)
+				}
+			}
 		}
+
 	});
 
 	// IMAGE FOLLOWING THE CURSOR
@@ -37,12 +52,7 @@ $(document).ready(function() {
 		followingCursor(x,y)
 	}
 
-	window.ondevicemotion = function(event) {
-		var x = event.accelerationIncludingGravity.x;
-		var y = event.accelerationIncludingGravity.y;
-		var z = event.accelerationIncludingGravity.z;
-		followingCursor(x,y)
-	}
+
 
 	function followingCursor(clientX,clientY) {
 		var width = window.innerWidth
