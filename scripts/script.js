@@ -5,7 +5,7 @@ $(document).ready(function() {
 	var image = $('.image')
 
 	Number.prototype.map = function (in_min, in_max, out_min, out_max) {
-	  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+		return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 	}
 
 	function format00(x) {
@@ -32,8 +32,7 @@ $(document).ready(function() {
 				}
 			}
 		}
-
-	});
+	})
 
 	// IMAGE FOLLOWING THE CURSOR
 
@@ -50,7 +49,7 @@ $(document).ready(function() {
 		followingCursor(x, y)
 	}
 
-	function followingCursor(clientX,clientY) {
+	function followingCursor(clientX, clientY) {
 		var width = window.innerWidth
 		var height = window.innerHeight
 
@@ -96,7 +95,7 @@ $(document).ready(function() {
 		ease: Elastic.easeOut.config(1, 0.3),
 	},"0")
 
-	tl.add(function(){ explode(emitter);},"0.9");
+	tl.add(function(){ explode(emitter);},"0.9")
 
 	// ANIMATION SPEED
 	tl.timeScale(0.75)
@@ -106,9 +105,12 @@ $(document).ready(function() {
 	document.querySelector('.image').addEventListener('mouseover', zoomMouseOver)
 	document.querySelector('.image').addEventListener('mouseout', zoomMouseOut)
 
+	$('.image').addEventListener('touchstart', zoomMouseOver)
+	$('.image').addEventListener('touchend', zoomMouseOut)
+
 	function zoomMouseOver() {
 		TweenMax.to('.image', 0.2, {
-			scale: 1.025,
+			scale: 1.05,
 		})
 	}
 
