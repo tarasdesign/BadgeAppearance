@@ -136,10 +136,11 @@ $(document).ready(function() {
 	// SCALE IMAGE
 
 	if (isMobile.any()) {
-		
+		document.querySelector('.image').addEventListener('touchstart', zoomIn);
+		document.querySelector('.image').addEventListener('touchend', zoomOut);
 	} else {
-		document.querySelector('.image').addEventListener('mouseover', zoomIn);
-		document.querySelector('.image').addEventListener('mouseout', zoomOut);
+		document.querySelector('.image').addEventListener('mouseover', zoomIn)
+		document.querySelector('.image').addEventListener('mouseout', zoomOut)
 	}
 
 	function zoomIn() {
