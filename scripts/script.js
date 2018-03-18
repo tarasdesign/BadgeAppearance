@@ -25,11 +25,9 @@ $(document).ready(function() {
 			document.body.addEventListener('touchmove', onTouchMove)
 
 			window.ondevicemotion = function(event) {
-				var width = window.innerWidth
-				var height = window.innerHeight
-				if (height > width) {
-					var x = event.accelerationIncludingGravity.x.map(2, -2, 0, width)
-					var y = event.accelerationIncludingGravity.y.map(-10, -15, 0, height) * -1
+				if (window.innerHeight > window.innerWidth) {
+					var x = event.accelerationIncludingGravity.x.map(2, -2, 0, window.innerWidth)
+					var y = event.accelerationIncludingGravity.y.map(-10, -15, 0, window.innerHeight) * -1
 					followingCursor(x, y)
 				}
 			}
@@ -103,7 +101,6 @@ $(document).ready(function() {
 	tl.timeScale(0.75)
 
 	// SCALE IMAGE
-
 	document.querySelector('.image').addEventListener('mouseover', zoomMouseOver)
 	document.querySelector('.image').addEventListener('mouseout', zoomMouseOut)
 
