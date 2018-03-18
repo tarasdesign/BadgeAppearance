@@ -105,8 +105,8 @@ $(document).ready(function() {
 	document.querySelector('.image').addEventListener('mouseover', zoomMouseOver)
 	document.querySelector('.image').addEventListener('mouseout', zoomMouseOut)
 
-	$('.image').addEventListener('touchstart', zoomMouseOver)
-	$('.image').addEventListener('touchend', zoomMouseOut)
+	//$('.image').addEventListener('touchstart', zoomMouseOver)
+	//$('.image').addEventListener('touchend', zoomMouseOut)
 
 	function zoomMouseOver() {
 		TweenMax.to('.image', 0.2, {
