@@ -31,16 +31,22 @@ $(document).ready(function() {
 		followingCursor(x,y)
 	}
 
-	function onMouseMove(e){
-		var x = e.clientX;
-		var y = e.clientY;
+	function onMouseMove(event){
+		var x = event.clientX;
+		var y = event.clientY;
+		followingCursor(x,y)
+	}
+
+	window.ondevicemotion = function(event) {
+		var x = event.accelerationIncludingGravity.x;
+		var y = event.accelerationIncludingGravity.y;
+		var z = event.accelerationIncludingGravity.z;
 		followingCursor(x,y)
 	}
 
 	function followingCursor(clientX,clientY) {
 		var width = window.innerWidth
 		var height = window.innerHeight
-
 
 		var y = (clientX / width - 0.5) * 25;
 		var x = (clientY / height - 0.5) * -25;
