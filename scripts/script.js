@@ -31,6 +31,12 @@ $(document).ready(function() {
 					var x = event.accelerationIncludingGravity.x.map(2, -2, 0, width);
 					var y = event.accelerationIncludingGravity.y.map(-10, -5, 0, height);
 					followingCursor(x, y);
+				} else {
+					TweenMax.to('.image', 0.4, {
+						rotationY: '0deg',
+						rotationX: '0deg',
+						filter: 'brightness(100%)',
+					});
 				}
 			}
 		}
