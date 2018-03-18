@@ -5,7 +5,7 @@ $(document).ready(function() {
 	var image = $('.image')
 
 	Number.prototype.map = function (in_min, in_max, out_min, out_max) {
-		return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+	  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	}
 
 	function format00(x) {
@@ -27,12 +27,13 @@ $(document).ready(function() {
 			window.ondevicemotion = function(event) {
 				if (window.innerHeight > window.innerWidth) {
 					var x = event.accelerationIncludingGravity.x.map(2, -2, 0, window.innerWidth)
-					var y = event.accelerationIncludingGravity.y.map(-10, -15, 0, window.innerHeight) * -1
+					var y = event.accelerationIncludingGravity.y.map(-10, -5, 0, window.innerHeight)
 					followingCursor(x, y)
 				}
 			}
 		}
-	})
+
+	});
 
 	// IMAGE FOLLOWING THE CURSOR
 
@@ -49,7 +50,9 @@ $(document).ready(function() {
 		followingCursor(x, y)
 	}
 
-	function followingCursor(clientX, clientY) {
+
+
+	function followingCursor(clientX,clientY) {
 		var width = window.innerWidth
 		var height = window.innerHeight
 
@@ -95,21 +98,20 @@ $(document).ready(function() {
 		ease: Elastic.easeOut.config(1, 0.3),
 	},"0")
 
-	tl.add(function(){ explode(emitter); },'0.9')
+	tl.add(function(){ explode(emitter);},"0.9");
 
 	// ANIMATION SPEED
 	tl.timeScale(0.75)
 
+
 	// SCALE IMAGE
+
 	document.querySelector('.image').addEventListener('mouseover', zoomMouseOver)
 	document.querySelector('.image').addEventListener('mouseout', zoomMouseOut)
 
-	//$('.image').addEventListener('touchstart', zoomMouseOver)
-	//$('.image').addEventListener('touchend', zoomMouseOut)
-
 	function zoomMouseOver() {
 		TweenMax.to('.image', 0.2, {
-			scale: 1.05,
+			scale: 1.025,
 		})
 	}
 
@@ -166,20 +168,20 @@ $(document).ready(function() {
 				// animate directly instead of physics2D
 				x: Math.cos(angle) * length * 5,
 				y: Math.sin(angle) * length * 5
-			}, 0)
+			}, 0);
 		}
-		return tl_emitter
+		return tl_emitter;
 	}
 
 	//just pass this function an element and it'll move the explosion container to its center and play the explosion animation.
 	function explode(element) {
-		var bounds = element.getBoundingClientRect()
-		TweenLite.set(emitterContainer, {opacity: 1})
-		explosion.restart()
+	  var bounds = element.getBoundingClientRect();
+	  TweenLite.set(emitterContainer, {opacity: 1});
+	  explosion.restart();
 	}
 
 	function getRandom(min, max) {
-		return min + Math.random() * (max - min)
+	  return min + Math.random() * (max - min);
 	}
 
-})
+});
