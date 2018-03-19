@@ -1,8 +1,7 @@
-$(document).ready(function() {
+function onDomReady() {
 	'use strict';
 
-	var body = $('body');
-	var image = $('.image');
+	var img = document.querySelector('.image');
 
 	// Detect device user agent
 	var isMobile = {
@@ -42,7 +41,7 @@ $(document).ready(function() {
 
 	var num = Math.floor((Math.random() * 17) + 1);
 	var src = 'images/Image-' + format00(num) + '.png';
-	image.attr('src', src);
+	img.setAttribute('src', src);
 
 	var tl = new TimelineMax({
 		onComplete: function(){
@@ -57,7 +56,7 @@ $(document).ready(function() {
 					var y = event.accelerationIncludingGravity.y.map(-10, -5, 0, height);
 					followingCursor(x, y);
 				} else {
-					TweenMax.to('.image', 0.4, {
+					TweenMax.to(img, 0.4, {
 						rotationY: '0deg',
 						rotationX: '0deg',
 						filter: 'brightness(100%)',
@@ -90,7 +89,7 @@ $(document).ready(function() {
 		var x = (clientY / height - 0.5) * -25;
 		var light = 100 + (clientX / width - 0.5) * 40;
 
-		TweenMax.to('.image', 0.4, {
+		TweenMax.to(img, 0.4, {
 			rotationY: y + 'deg',
 			rotationX: x + 'deg',
 			filter: 'brightness(' + light + '%)',
@@ -110,7 +109,7 @@ $(document).ready(function() {
 		ease: Power2.easeIn,
 	}, "0");
 
-	tl.fromTo('.image', 1.0, {
+	tl.fromTo(img, 1.0, {
 		opacity: 0,
 		scale: 0.1,
 		rotationZ: -540,
@@ -123,7 +122,7 @@ $(document).ready(function() {
 		transformPerspective: 450,
 	}, "0");
 
-	tl.from('.image', 2.5, {
+	tl.from(img, 2.5, {
 		rotationY: -1080,
 		ease: Elastic.easeOut.config(1, 0.3),
 	}, "0");
@@ -136,21 +135,21 @@ $(document).ready(function() {
 	// SCALE IMAGE
 
 	if (isMobile.any()) {
-		document.querySelector('.image').addEventListener('touchstart', zoomIn);
-		document.querySelector('.image').addEventListener('touchend', zoomOut);
+		img.addEventListener('touchstart', zoomIn);
+		img.addEventListener('touchend', zoomOut);
 	} else {
-		document.querySelector('.image').addEventListener('mouseover', zoomIn)
-		document.querySelector('.image').addEventListener('mouseout', zoomOut)
+		img.addEventListener('mouseover', zoomIn)
+		img.addEventListener('mouseout', zoomOut)
 	}
 
 	function zoomIn() {
-		TweenMax.to('.image', 0.2, {
+		TweenMax.to(img, 0.2, {
 			scale: 1.05,
 		});
 	}
 
 	function zoomOut() {
-		TweenMax.to('.image', 0.2, {
+		TweenMax.to(img, 0.2, {
 			scale: 1,
 		});
 	}
@@ -162,11 +161,11 @@ $(document).ready(function() {
     emitterSize = 120,
     dotQuantity = 50,
     dotSizeMax = 100,
-    dotSizeMin = 10,
+    dotSizeMin = 30,
     speed = 5.0,
     gravity = 0.25;
 
-	emitterContainer.style.cssText = "position: absolute; left: 50%; top: 50%; overflow: visible; z-index: 0; pointer-events: none;opacity:0;";
+	emitterContainer.style.cssText = "position: absolute; left: 50%; top: 50%; overflow: visible; z-index: 0; pointer-events: none;opacity:0; will-change: opacity;";
 	document.body.appendChild(emitterContainer);
 
 	var explosion = createExplosion(emitterContainer);
@@ -174,7 +173,7 @@ $(document).ready(function() {
 	function createExplosion(emitterContainer) {
 		var tl_emitter = new TimelineLite({paused: true}), angle, length, dot, i, size;
 
-		for (i = 0; i < dotQuantity; i++) {
+		function createStar() {
 			dot = document.createElement("div");
 			dot.className = "dot";
 			size = getRandom(dotSizeMin, dotSizeMax);
@@ -204,11 +203,15 @@ $(document).ready(function() {
 				y: Math.sin(angle) * length * 5
 			}, 0);
 		}
+
+		for (let i = 0; i < dotQuantity; i++) {
+			createStar()
+		}
 		return tl_emitter;
 	}
 
 	function explode(element) {
-		var bounds = element.getBoundingClientRect();
+		// var bounds = element.getBoundingClientRect();
 		TweenLite.set(emitterContainer, {opacity: 1});
 		explosion.restart();
 	}
@@ -217,4 +220,10 @@ $(document).ready(function() {
 		return min + Math.random() * (max - min);
 	}
 
-});
+};
+
+if (document.readyState !== 'loading') {
+  onDomReady();
+} else {
+  document.addEventListener('DOMContentLoaded', onDomReady);
+}
