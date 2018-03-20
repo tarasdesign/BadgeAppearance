@@ -100,14 +100,14 @@ function onDomReady() {
 	tl.from('.background', 1.0, {
 		opacity: 0,
 		ease: Power2.easeInOut,
-	}, "1");
+	}, "0");
 
 	tl.from('.glow', 1.0, {
 		opacity: 0,
 		scale: 0.1,
 		rotationZ: -540,
 		ease: Power2.easeIn,
-	}, "1");
+	}, "0");
 
 	tl.fromTo(img, 1.0, {
 		opacity: 0,
@@ -120,14 +120,14 @@ function onDomReady() {
 		rotationZ: 0,
 		ease: Power2.easeIn,
 		transformPerspective: 450,
-	}, "1");
+	}, "0");
 
 	tl.from(img, 2.5, {
 		rotationY: -1080,
 		ease: Elastic.easeOut.config(1, 0.3),
-	}, "1");
+	}, "0");
 
-	tl.add(function(){ explode(emitter);},"1.9");
+	tl.add(function(){ explode(emitter);},"0.9");
 
 	// ANIMATION SPEED
 	tl.timeScale(0.75);
