@@ -1,8 +1,8 @@
-function onImageLoaded() {
+function onDomReady() {
 	'use strict';
 
 	var img = document.querySelector('.image');
-	
+
 	// Detect device user agent
 	var isMobile = {
 		Android: function() {
@@ -31,6 +31,17 @@ function onImageLoaded() {
 	Number.prototype.map = function (in_min, in_max, out_min, out_max) {
 		return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	}
+
+	function format00(x) {
+		var str = '' + x;
+		var pad = '00';
+		var num = pad.substring(str.length) + str;
+		return num;
+	}
+
+	var num = Math.floor((Math.random() * 17) + 1);
+	var src = 'images/Image-' + format00(num) + '.png';
+	img.setAttribute('src', src);
 
 	var tl = new TimelineMax({
 		onComplete: function(){
@@ -209,26 +220,6 @@ function onImageLoaded() {
 		return min + Math.random() * (max - min);
 	}
 };
-
-function onDomReady() {
-	'use strict';
-
-	var img = document.querySelector('.image');
-
-	function format00(x) {
-		var str = '' + x;
-		var pad = '00';
-		var num = pad.substring(str.length) + str;
-		return num;
-	}
-
-	var num = Math.floor((Math.random() * 17) + 1);
-	var src = 'images/Image-' + format00(num) + '.png';
-	img.setAttribute('src', src);
-	img.addEventListener('load', function() {
-		onImageLoaded();
-	}, false);
-}
 
 if (document.readyState !== 'loading') {
 	onDomReady();
