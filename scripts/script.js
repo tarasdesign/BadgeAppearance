@@ -1,6 +1,8 @@
 function onImageLoaded() {
 	'use strict';
 
+	var img = document.querySelector('.image');
+	
 	// Detect device user agent
 	var isMobile = {
 		Android: function() {
