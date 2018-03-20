@@ -127,7 +127,7 @@ function onDomReady() {
 		ease: Elastic.easeOut.config(1, 0.3),
 	}, "1");
 
-	tl.add(function(){ explode(emitter);},"0.9");
+	tl.add(function(){ explode(emitter);},"1.9");
 
 	// ANIMATION SPEED
 	tl.timeScale(0.75);
