@@ -219,10 +219,11 @@ function onDomReady() {
 	function getRandom(min, max) {
 		return min + Math.random() * (max - min);
 	}
+
 };
 
 if (document.readyState !== 'loading') {
-	onDomReady();
+  onDomReady();
 } else {
-	document.addEventListener('DOMContentLoaded', onDomReady);
+  document.addEventListener('DOMContentLoaded', onDomReady);
 }
