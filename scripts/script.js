@@ -100,14 +100,14 @@ function onDomReady() {
 	tl.from('.background', 1.0, {
 		opacity: 0,
 		ease: Power2.easeInOut,
-	}, "0");
+	}, "1");
 
 	tl.from('.glow', 1.0, {
 		opacity: 0,
 		scale: 0.1,
 		rotationZ: -540,
 		ease: Power2.easeIn,
-	}, "0");
+	}, "1");
 
 	tl.fromTo(img, 1.0, {
 		opacity: 0,
@@ -120,12 +120,12 @@ function onDomReady() {
 		rotationZ: 0,
 		ease: Power2.easeIn,
 		transformPerspective: 450,
-	}, "0");
+	}, "1");
 
 	tl.from(img, 2.5, {
 		rotationY: -1080,
 		ease: Elastic.easeOut.config(1, 0.3),
-	}, "0");
+	}, "1");
 
 	tl.add(function(){ explode(emitter);},"0.9");
 
@@ -223,7 +223,7 @@ function onDomReady() {
 };
 
 if (document.readyState !== 'loading') {
-  onDomReady();
+	onDomReady();
 } else {
-  document.addEventListener('DOMContentLoaded', onDomReady);
+	document.addEventListener('DOMContentLoaded', onDomReady);
 }
