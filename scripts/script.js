@@ -1,7 +1,5 @@
-function onDomReady() {
+function onImageLoaded() {
 	'use strict';
-
-	//var img = document.querySelector('.image');
 
 	// Detect device user agent
 	var isMobile = {
@@ -210,7 +208,8 @@ function onDomReady() {
 	}
 };
 
-if (document.readyState !== 'loading') {
+function onDomReady() {
+	'use strict';
 
 	var img = document.querySelector('.image');
 
@@ -225,9 +224,12 @@ if (document.readyState !== 'loading') {
 	var src = 'images/Image-' + format00(num) + '.png';
 	img.setAttribute('src', src);
 	img.addEventListener('load', function() {
-		console.log('done');
-		onDomReady();
+		onImageLoaded();
 	}, false);
+}
+
+if (document.readyState !== 'loading') {
+	onDomReady();
 } else {
 	document.addEventListener('DOMContentLoaded', onDomReady);
 }
