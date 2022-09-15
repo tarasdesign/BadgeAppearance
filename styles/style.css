@@ -19,7 +19,7 @@ html, body {
 
 body {
 	cursor: pointer;
-	background: url("../images/screenshot.png");
+	/* background: url("../images/screenshot.png"); */
 	background-size: cover;
 }
 
